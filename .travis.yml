@@ -13,3 +13,10 @@ after_success:
   - docker build -t dzenoworldwidewest/multi-nginx -f ./nginx
   - docker build -t dzenoworldwidewest/multi-server -f ./server
   - docker build -t dzenoworldwidewest/multi-worker -f ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push dzenoworldwidewest/multi-client
+  - docker push dzenoworldwidewest/multi-nginx
+  - docker push dzenoworldwidewest/multi-server
+  - docker push dzenoworldwidewest/multi-worker
